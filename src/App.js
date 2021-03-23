@@ -27,12 +27,22 @@ const App = (props) => {
 
   const addNewPost = (post) => {
     post.id = posts.length + 1;
-    post.slug = encodeURIComponent(
-      post.title.toLowerCase().split(" ").join("-")
-    );
+    post.slug = getNewSlugFromTitle(post.title);
     setPosts([...posts, post]);
     setFlashMessage(`saved`);
   };
+
+  const getNewSlugFromTitle = (title) => 
+    encodeURIComponent(title.toLowerCase().split(" ").join("-"));
+
+  const updatePost = (post) => {
+    post.slug = this.getNewSlugFromTitle(post.title);
+    const index = posts.findIndex((p) => p.id === post.id);
+    const oldPosts = posts.slice(0, index).concat(posts.slice(index + 1));
+    const updatedPosts = [...oldPosts, post].sort((a, b) => a.id - b.id);
+    setPosts(updatedPosts);
+    setFlashMessage(`updated`);
+  }
 
   return (
     <Router>
@@ -61,6 +71,19 @@ const App = (props) => {
             render={() => (
               <PostForm addNewPost={addNewPost} />
             )}
+          />
+          <Route
+            path="/edit/:postSlug"
+            render={(props) => {
+              const post = posts.find(
+                  (post) => post.slug === props.math.params.postSlug
+              );
+              if (post) {
+                return <PostForm post={post} updatePost={updatePost}/>
+              } else {
+                return <Redirect to="/" />;
+              }
+            }}
           />
           <Route component={NotFound} />
         </Switch>
