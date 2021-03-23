@@ -34,6 +34,15 @@ const App = (props) => {
       content: "Ipsum.",
     },
   ]);
+  
+  const addNewPost = (post) => {
+    post.id = posts.length + 1;
+    post.slug = encodeURIComponent(
+      post.title.toLowerCase().split(" ").join("-")
+    );
+    setPosts([...posts, post]);
+  };
+  
   return (
     <Router>
       <div className="App">
