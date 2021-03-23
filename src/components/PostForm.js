@@ -4,10 +4,30 @@ import Quill from "react-quill";
 
 import "react-quill/dist/quill.snow.css";
 
-const PostForm = (props) => {
+const PostForm = ({ addNewPost }) => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-
+    const [saved, setSaved] = useState(false);
+    
+    const handleAddNewPost = (event) => {
+        event.preventDefault();
+        if (!title) {
+            alert("Title required in order to submit post!"); 
+        } else if (!content) {
+            alert("Please write a post before submitting!");
+        } else {
+            const post = {
+                title: title,
+                content: content
+            };
+            addNewPost(post);
+            setSaved(true);
+        }
+    }
+    if (saved === true) {
+        return <Redirect to="/" />
+    }
+    
     return (
         <form className="container">
             <h1>Add a New Post</h1>
