@@ -36,7 +36,7 @@ const App = (props) => {
     encodeURIComponent(title.toLowerCase().split(" ").join("-"));
 
   const updatePost = (post) => {
-    post.slug = this.getNewSlugFromTitle(post.title);
+    post.slug = getNewSlugFromTitle(post.title);
     const index = posts.findIndex((p) => p.id === post.id);
     const oldPosts = posts.slice(0, index).concat(posts.slice(index + 1));
     const updatedPosts = [...oldPosts, post].sort((a, b) => a.id - b.id);
@@ -70,12 +70,12 @@ const App = (props) => {
             path="/new"
             render={() => (
               <PostForm 
-                    addNewPost={addNewPost}
-                    post={{id: 0, slug: "", title: "", content: ""}}
+                addNewPost={addNewPost}
+                post={{id: 0, slug: "", title: "", content: ""}} 
               />
             )}
           />
-          <Route
+          {/* <Route
             path="/edit/:postSlug"
             render={(props) => {
               const post = posts.find(
@@ -83,6 +83,19 @@ const App = (props) => {
               );
               if (post) {
                 return <PostForm post={post} updatePost={updatePost}/>
+              } else {
+                return <Redirect to="/" />;
+              }
+            }}
+          /> */}
+          <Route
+            path="/edit/:postSlug"
+            render={(props) => {
+              const post = posts.find(
+                (post) => post.slug === props.match.params.postSlug
+              );
+              if (post) {
+                return <PostForm updatePost={updatePost} post={post} />;
               } else {
                 return <Redirect to="/" />;
               }
