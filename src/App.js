@@ -14,26 +14,7 @@ import {
 import "./App.css";
 
 const App = (props) => {
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      slug: "hello-react",
-      title: "Hello React",
-      content: "Lorem.",
-    },
-    {
-      id: 2,
-      slug: "hello-project",
-      title: "Hello Project",
-      content: "Tothe.",
-    },
-    {
-      id: 3,
-      slug: "hello-blog",
-      title: "Hello Blog",
-      content: "Ipsum.",
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
   
   const addNewPost = (post) => {
     post.id = posts.length + 1;
