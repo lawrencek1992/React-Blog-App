@@ -42,7 +42,15 @@ const App = (props) => {
     const updatedPosts = [...oldPosts, post].sort((a, b) => a.id - b.id);
     setPosts(updatedPosts);
     setFlashMessage(`updated`);
-  }
+  };
+  
+  const deletePost = (post) => {
+    if (window.confirm("Delete this post?")) {
+      const updatedPosts = posts.filter((p) => p.id !== post.id);
+      setPosts(updatedPosts);
+      setFlashMessage(`deleted`);
+    }
+  };
 
   return (
     <Router>
@@ -75,19 +83,6 @@ const App = (props) => {
               />
             )}
           />
-          {/* <Route
-            path="/edit/:postSlug"
-            render={(props) => {
-              const post = posts.find(
-                  (post) => post.slug === props.math.params.postSlug
-              );
-              if (post) {
-                return <PostForm post={post} updatePost={updatePost}/>
-              } else {
-                return <Redirect to="/" />;
-              }
-            }}
-          /> */}
           <Route
             path="/edit/:postSlug"
             render={(props) => {
