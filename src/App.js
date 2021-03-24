@@ -11,7 +11,7 @@ import Posts from "./components/Posts";
 import Post from "./components/Post";
 import PostForm from "./components/PostForm";
 import Message from "./components/Message";
-import Login from "/components/Login";
+import Login from "/components/login";
 import NotFound from "./components/NotFound";
 
 import "./App.css";
