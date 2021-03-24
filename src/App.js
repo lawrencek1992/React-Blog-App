@@ -11,12 +11,13 @@ import Posts from "./components/Posts";
 import Post from "./components/Post";
 import PostForm from "./components/PostForm";
 import Message from "./components/Message";
-import Login from "/components/login";
+import Login from "./components/Login";
 import NotFound from "./components/NotFound";
 
 import "./App.css";
 
 const App = (props) => {
+  const [user, setUser] = useStorageState(localStorage, "state-user", {});
   const [posts, setPosts] = useStorageState(localStorage, `state-posts`, []);
   const [message, setMessage] = useState(null);
 
@@ -45,7 +46,7 @@ const App = (props) => {
     setPosts(updatedPosts);
     setFlashMessage(`updated`);
   };
-  
+
   const deletePost = (post) => {
     if (window.confirm("Delete this post?")) {
       const updatedPosts = posts.filter((p) => p.id !== post.id);
@@ -63,7 +64,7 @@ const App = (props) => {
           <Route
             exact
             path="/"
-            render={() => <Posts posts={posts} />}
+            render={() => <Posts posts={posts} deletePost={deletePost}/>}
         />
           <Route
             path="/post/:postSlug"
@@ -75,10 +76,12 @@ const App = (props) => {
               else return <NotFound />;
             }}
           />
-           <Route 
-            exact
-            path="/login"
-            component={Login}
+          <Route
+              exact
+              path="/login"
+              render={() =>
+                !user.isAuthenticated ? <Login /> : <Redirect to="/" />
+              }
           />
           <Route
             exact
