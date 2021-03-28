@@ -14,7 +14,7 @@ const Posts = ({ posts, deletePost }) => (
                         <Link to={`/post/${post.slug}`}>{post.title}</Link>
                     </h2>
                     <p>
-                        <Link to={`/edit/${post.slug}`}.Edit</Link>
+                        <Link to={`/edit/${post.slug}`}>Edit</Link>
                         {" | "}
                         <button className="linkLike" onClick={() => deletePost(post)}>Delete</buton>
                     </p>
