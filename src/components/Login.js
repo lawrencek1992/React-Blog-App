@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 const Login = (props) => {
     const [email, setEmail] = useState("");
@@ -13,17 +13,11 @@ const Login = (props) => {
         <form className="container" name="login" onSubmit={handleLogin}>
             <p>
                 <label htmlFor="email">Email:</label>
-                <input 
-                    type="email"
-                    onChange={(event) => setEmail(event.target.value)}
-                    />
+                <input type="email" onChange={(e) => setEmail(e.target.value)} />
             </p>
             <p>
                 <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    onChange={(event) => setPassword(event.target.value)}
-                />
+                <input type="password" onChange={(e) => setPassword(e.target.value)} />
             </p>
             <p>
                 <button type="submit" disabled={!email && !password}>Login</button>
