@@ -79,9 +79,7 @@ const App = (props) => {
           <Route
               exact
               path="/login"
-              render={() =>
-                !user.isAuthenticated ? <Login /> : <Redirect to="/" />
-              }
+              component={Login}
           />
           <Route
             exact
