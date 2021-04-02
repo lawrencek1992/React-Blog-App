@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { useStorageState } from "react-storage-hooks";
 
-import UserContext from "./context/User-Context";
+import UserContext from "./context/UserContext";
 import Header from "./components/Header";
 import Posts from "./components/Posts";
 import Post from "./components/Post";
