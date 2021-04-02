@@ -12,6 +12,7 @@ import Post from "./components/Post";
 import PostForm from "./components/PostForm";
 import Message from "./components/Message";
 import Login from "./components/Login";
+import firebase from "./firebase";
 import NotFound from "./components/NotFound";
 
 import "./App.css";
@@ -55,6 +56,15 @@ const App = (props) => {
     }
   };
 
+  const onLogin = (email, password) => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(user => console.log("Loggin in"))
+      .catch(error => console.error(error));
+    }
+  };
+
   return (
     <Router>
       <div className="App">
@@ -79,7 +89,9 @@ const App = (props) => {
           <Route
               exact
               path="/login"
-              component={Login}
+              render={() => 
+                <Login onLogin={onLogin} />
+              }
           />
           <Route
             exact
