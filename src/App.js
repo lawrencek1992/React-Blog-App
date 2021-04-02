@@ -6,6 +6,8 @@ import {
   Redirect,
 } from "react-router-dom";
 import { useStorageState } from "react-storage-hooks";
+
+import UserContext from "./context/User-Context";
 import Header from "./components/Header";
 import Posts from "./components/Posts";
 import Post from "./components/Post";
@@ -72,58 +74,60 @@ const App = (props) => {
 
   return (
     <Router>
-      <div className="App">
-        <Header />
-        {message && <Message type={message} />}
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => <Posts posts={posts} deletePost={deletePost}/>}
-        />
-          <Route
-            path="/post/:postSlug"
-            render={(props) => {
-              const post = posts.find(
-                (post) => post.slug === props.match.params.postSlug
-              );
-              if (post) return <Post post={post} />;
-              else return <NotFound />;
-            }}
-          />
-          <Route
+      <UserContext.Provider value={{ user, onLogin }}>
+        <div className="App">
+          <Header />
+          {message && <Message type={message} />}
+          <Switch>
+            <Route
               exact
-              path="/login"
-              render={() => 
-                <Login onLogin={onLogin} />
-              }
+              path="/"
+              render={() => <Posts posts={posts} deletePost={deletePost}/>}
           />
-          <Route
-            exact
-            path="/new"
-            render={() => (
-              <PostForm 
-                addNewPost={addNewPost}
-                post={{id: 0, slug: "", title: "", content: ""}} 
-              />
-            )}
-          />
-          <Route
-            path="/edit/:postSlug"
-            render={(props) => {
-              const post = posts.find(
-                (post) => post.slug === props.match.params.postSlug
-              );
-              if (post) {
-                return <PostForm updatePost={updatePost} post={post} />;
-              } else {
-                return <Redirect to="/" />;
-              }
-            }}
-          />
-          <Route component={NotFound} />
-        </Switch>
-      </div>
+            <Route
+              path="/post/:postSlug"
+              render={(props) => {
+                const post = posts.find(
+                  (post) => post.slug === props.match.params.postSlug
+                );
+                if (post) return <Post post={post} />;
+                else return <NotFound />;
+              }}
+            />
+            <Route
+                exact
+                path="/login"
+                render={() => 
+                  <Login onLogin={onLogin} />
+                }
+            />
+            <Route
+              exact
+              path="/new"
+              render={() => (
+                <PostForm 
+                  addNewPost={addNewPost}
+                  post={{id: 0, slug: "", title: "", content: ""}} 
+                />
+              )}
+            />
+            <Route
+              path="/edit/:postSlug"
+              render={(props) => {
+                const post = posts.find(
+                  (post) => post.slug === props.match.params.postSlug
+                );
+                if (post) {
+                  return <PostForm updatePost={updatePost} post={post} />;
+                } else {
+                  return <Redirect to="/" />;
+                }
+              }}
+            />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+      </UserContext.Provider>
     </Router>
   );
 };
