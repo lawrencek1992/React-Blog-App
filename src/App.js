@@ -60,10 +60,15 @@ const App = (props) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(user => console.log("Loggin in"))
-      .catch(error => console.error(error));
+      .then((response) => {
+        setUser({
+          email: response.user["email"],
+          isAuthenticated: true,
+        });
+      })
+      .catch((error) => console.error(error));
+      console.log("You're logged in!");
     }
-  };
 
   return (
     <Router>
