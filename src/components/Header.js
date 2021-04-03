@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 
 const Header = (props) => {
-    const { user, onLogout } = userContext(UserContext);
+    const { user, onLogout } = useContext(UserContext);
 
     return (
         <header  className="App-header">
