@@ -98,7 +98,7 @@ const App = (props) => {
                 exact
                 path="/login"
                 render={() => 
-                  <Login onLogin={onLogin} />
+                  <Login />
                 }
             />
             <Route
