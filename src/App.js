@@ -133,7 +133,7 @@ const App = (props) => {
                 );
                 if (post) {
                   if (user.isAuthenticated) {
-                    return <PostForm udatePost={updatePost} post={post} />;
+                    return <PostForm updatePost={updatePost} post={post} />;
                   } else {
                     return <Redirect to="/login" />;
                   }
