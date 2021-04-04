@@ -24,6 +24,30 @@ const App = (props) => {
   const [posts, setPosts] = useStorageState(localStorage, `state-posts`, []);
   const [message, setMessage] = useState(null);
 
+  const onLogin = (email, password) => {
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((response) => {
+      setUser({
+        email: response.user["email"],
+        isAuthenticated: true,
+      });
+    })
+    .catch((error) => console.error(error));
+    console.log("You're logged in!");
+  };
+  
+  const onLogout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        setUser({ isAuthenticated: false });
+      })
+      .catch((error) => console.error(error));
+  };
+  
   const setFlashMessage = (message) => {
     setMessage(message);
     setTimeout(() => {
@@ -57,20 +81,6 @@ const App = (props) => {
       setFlashMessage(`deleted`);
     }
   };
-
-  const onLogin = (email, password) => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        setUser({
-          email: response.user["email"],
-          isAuthenticated: true,
-        });
-      })
-      .catch((error) => console.error(error));
-      console.log("You're logged in!");
-    }
 
   return (
     <Router>
