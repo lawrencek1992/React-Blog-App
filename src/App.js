@@ -98,13 +98,13 @@ const App = (props) => {
                 exact
                 path="/login"
                 render={() => 
-                        {!user.isAuthenticated ? <Login /> : <Redirect to="/" />
+                  !user.isAuthenticated ? <Login /> : <Redirect to="/" />
                 }
             />
             <Route
               exact
               path="/new"
-              render={() => (
+              render={() => 
                 user.isAuthenticated ? (
                   <PostForm 
                     addNewPost={addNewPost}
@@ -123,7 +123,7 @@ const App = (props) => {
                 );
                 if (post) {
                   if (user.isAuthenticated) {
-                    return <PostForm updatePost={updatePost} post={post} />;
+                    return <PostForm udatePost={updatePost} post={post} />;
                   } else {
                     return <Redirect to="/login" />;
                   }
