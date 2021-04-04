@@ -98,18 +98,22 @@ const App = (props) => {
                 exact
                 path="/login"
                 render={() => 
-                  <Login />
+                        {!user.isAuthenticated ? <Login /> : <Redirect to="/" />
                 }
             />
             <Route
               exact
               path="/new"
               render={() => (
-                <PostForm 
-                  addNewPost={addNewPost}
-                  post={{id: 0, slug: "", title: "", content: ""}} 
-                />
-              )}
+                user.isAuthenticated ? (
+                  <PostForm 
+                    addNewPost={addNewPost}
+                    post={{id: 0, slug: "", title: "", content: ""}} 
+                  />
+                ) : (
+                  <Redirect to="/login" />
+                )
+              }
             />
             <Route
               path="/edit/:postSlug"
@@ -118,7 +122,11 @@ const App = (props) => {
                   (post) => post.slug === props.match.params.postSlug
                 );
                 if (post) {
-                  return <PostForm updatePost={updatePost} post={post} />;
+                  if (user.isAuthenticated) {
+                    return <PostForm updatePost={updatePost} post={post} />;
+                  } else {
+                    return <Redirect to="/login" />;
+                  }
                 } else {
                   return <Redirect to="/" />;
                 }
