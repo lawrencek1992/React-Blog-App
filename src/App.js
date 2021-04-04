@@ -25,29 +25,29 @@ const App = (props) => {
   const [message, setMessage] = useState(null);
 
   const onLogin = (email, password) => {
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((response) => {
-      setUser({
-        email: response.user["email"],
-        isAuthenticated: true,
-      });
-    })
-    .catch((error) => console.error(error));
-    console.log("You're logged in!");
-  };
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((response) => {
+        setUser({
+          email: response.user["email"],
+          isAuthenticated: true,
+        });
+      })
+      .catch((error) => console.error(error));
+      console.log("You're logged in!");
+    };
   
   const onLogout = () => {
     firebase
       .auth()
       .signOut()
       .then(() => {
-        setUser({ isAuthenticated: false });
+        setUser({ isAuthenticated: false});
       })
       .catch((error) => console.error(error));
   };
-  
+
   const setFlashMessage = (message) => {
     setMessage(message);
     setTimeout(() => {
@@ -84,7 +84,7 @@ const App = (props) => {
 
   return (
     <Router>
-      <UserContext.Provider value={{ user, onLogin }}>
+      <UserContext.Provider value={{ user, onLogin, onLogout }}>
         <div className="App">
           <Header />
           {message && <Message type={message} />}
