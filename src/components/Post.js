@@ -1,21 +1,33 @@
-import React from "react";
-import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
-const Post = ({post}) => {
-    const converter = new QuillDeltaToHtmlConverter(post.content.ops, {});
-    const contentHTML = converter.convert();
-    
+const Posts = ({ posts, deletePost }) => {
+    const { user } = useContext(UserContext);
     return (
-        <article className="post container">
-            <h1>{post.title}</h1>
-            <div
-                className="content"
-                dangerouslySetInnerHTML={{
-                    __html: contentHTML
-                }}
-            />
+        <article className="posts container">
+            <h1>Posts</h1>
+            <ul>
+                {posts.length < 1 && (
+                    <li key="empty">No posts yet!</li>
+                )}
+                {posts.map(post => (
+                    <li key={post.id}>
+                        <h2>
+                            <Link to={`/post/${post.slug}`}>{post.title}</Link>
+                        </h2>
+                        {user.isAuthenticated && (
+                        <p>
+                            <Link to={`/edit/${post.slug}`}>Edit</Link>
+                            {" | "}
+                            <button className="linkLike" onClick={() => deletePost(post)}>Delete</button>
+                        </p>
+                        )}
+                    </li>
+                ))}
+            </ul>
         </article>
-    );
-}; 
+    )
+};
 
-export default Post;
+export default Posts;
