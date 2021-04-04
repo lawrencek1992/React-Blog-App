@@ -35,7 +35,6 @@ const App = (props) => {
         });
       })
       .catch((error) => console.error(error));
-      console.log("You're logged in!");
     };
   
   const onLogout = () => {
@@ -56,10 +55,11 @@ const App = (props) => {
   };
 
   const addNewPost = (post) => {
-    post.id = posts.length + 1;
+    post.id = post.title + Math.random();
     post.slug = getNewSlugFromTitle(post.title);
     setPosts([...posts, post]);
     setFlashMessage(`saved`);
+    console.log("This post's id is " + post.id);
   };
 
   const getNewSlugFromTitle = (title) => 
