@@ -154,3 +154,11 @@
   .App button.linkLike:hover {
      cursor: pointer;
   }
+
+.App button.logoutLink {
+  border: none;
+  font-size: inherit;
+  color: white;
+  background: none;
+  text-decoration: underline;
+}
