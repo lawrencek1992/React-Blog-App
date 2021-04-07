@@ -18,7 +18,7 @@ const PostForm = ({ post: propsPost, addNewPost, updatePost }) => {
     const quillRef = React.useRef();
     useEffect(() => {
         if (prevPost && quillRef.current) {
-            if (propsPost.id !== prevPost.id) {
+            if (propsPost.key !== prevPost.key) {
                 setPost({ ...propsPost });
                 quillRef.current.getEditor().setContents(``);
             }
