@@ -55,11 +55,14 @@ const App = (props) => {
   };
 
   const addNewPost = (post) => {
-    post.id = post.title + Math.random();
+    const postsRef = firebase.database().ref("posts");
     post.slug = getNewSlugFromTitle(post.title);
-    setPosts([...posts, post]);
+    //Remove the null key you set previously in the Route for /new. 
+    delete post.key;
+    //setPosts([...posts, post]); You aren't going to need to save posts in state after this, so you don't need to update state. You are going to use the .push() function to instead save the post to a "posts" array in Firebase. 
     setFlashMessage(`saved`);
-    console.log("This post's id is " + post.id);
+    postsRef.push(post);
+    console.log("This post's key is: '" + post.id + "'");
   };
 
   const getNewSlugFromTitle = (title) => 
@@ -118,7 +121,7 @@ const App = (props) => {
                 user.isAuthenticated ? (
                   <PostForm 
                     addNewPost={addNewPost}
-                    post={{id: 0, slug: "", title: "", content: ""}} 
+                    post={{key: null, slug: "", title: "", content: ""}} 
                   />
                 ) : (
                   <Redirect to="/login" />
