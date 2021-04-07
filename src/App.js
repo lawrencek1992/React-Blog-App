@@ -85,6 +85,28 @@ const App = (props) => {
     }
   };
 
+  useEffect(() => {
+  const postsRef = firebase.database().ref("posts");
+  //The on() method gives a "snapshot" of what's in the database. 
+  postsRef.on("value", (snapshot) => {
+    const posts = snapshot.val();
+    //New array to contain new posts state values. 
+    const postsState = [];
+    //Loop through posts array. 
+    for (let post in posts) {
+      postsState.push({
+        //Each post retrieved from Firebase is actually the post key, so this value is assigned to "key" in the object. 
+        key: post,
+        //Bracket notation to access the key/value pairs from each post object returned from Firebase.
+        slug: posts[post].slug,
+        title: posts[post].title,
+        content: posts[post].content,
+      });
+    }
+    setPosts(postsState);
+  });
+}, [setPosts]);
+  
   return (
     <Router>
       <UserContext.Provider value={{ user, onLogin, onLogout }}>
