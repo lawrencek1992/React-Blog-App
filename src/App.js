@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -59,54 +59,55 @@ const App = (props) => {
     post.slug = getNewSlugFromTitle(post.title);
     //Remove the null key you set previously in the Route for /new. 
     delete post.key;
-    //setPosts([...posts, post]); You aren't going to need to save posts in state after this, so you don't need to update state. You are going to use the .push() function to instead save the post to a "posts" array in Firebase. 
     setFlashMessage(`saved`);
     postsRef.push(post);
-    console.log("This post's key is: '" + post.id + "'");
   };
 
   const getNewSlugFromTitle = (title) => 
     encodeURIComponent(title.toLowerCase().split(" ").join("-"));
 
   const updatePost = (post) => {
-    post.slug = getNewSlugFromTitle(post.title);
-    const index = posts.findIndex((p) => p.id === post.id);
-    const oldPosts = posts.slice(0, index).concat(posts.slice(index + 1));
-    const updatedPosts = [...oldPosts, post].sort((a, b) => a.id - b.id);
-    setPosts(updatedPosts);
+    const postRef = firebase.database().ref("posts/" + post.key);
+    //update() is a firebase method
+    postRef.update({
+      slug: getNewSlugFromTitle(post.title),
+      title: post.title,
+      content: post.content
+    });
     setFlashMessage(`updated`);
   };
 
   const deletePost = (post) => {
     if (window.confirm("Delete this post?")) {
-      const updatedPosts = posts.filter((p) => p.id !== post.id);
-      setPosts(updatedPosts);
+      const postRef = firebase.database().ref("posts/" + post.key);
+      //remove() is a firebase method.
+      postRef.remove();
       setFlashMessage(`deleted`);
     }
   };
 
   useEffect(() => {
-  const postsRef = firebase.database().ref("posts");
-  //The on() method gives a "snapshot" of what's in the database. 
-  postsRef.on("value", (snapshot) => {
-    const posts = snapshot.val();
-    //New array to contain new posts state values. 
-    const postsState = [];
-    //Loop through posts array. 
-    for (let post in posts) {
-      postsState.push({
-        //Each post retrieved from Firebase is actually the post key, so this value is assigned to "key" in the object. 
-        key: post,
-        //Bracket notation to access the key/value pairs from each post object returned from Firebase.
-        slug: posts[post].slug,
-        title: posts[post].title,
-        content: posts[post].content,
-      });
-    }
-    setPosts(postsState);
-  });
-}, [setPosts]);
-  
+    const postsRef = firebase.database().ref("posts");
+    //The on() method gives a "snapshot" of what's in the database. 
+    postsRef.on("value", (snapshot) => {
+      const posts = snapshot.val();
+      //New array to contain new posts state values. 
+      const postsState = [];
+      //Loop through posts array. 
+      for (let post in posts) {
+        postsState.push({
+          //Each post retrieved from Firebase is actually the post key, so this value is assigned to "key" in the object. 
+          key: post,
+          //Bracket notation to access the key/value pairs from each post object returned from 
+          slug: posts[post].slug,
+          title: posts[post].title,
+          content: posts[post].content,
+        });
+      }
+      setPosts(postsState);
+    });
+  }, [setPosts]);
+
   return (
     <Router>
       <UserContext.Provider value={{ user, onLogin, onLogout }}>
