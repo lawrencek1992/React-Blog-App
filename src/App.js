@@ -89,7 +89,7 @@ const App = (props) => {
 
   const deletePost = (post) => {
       if (user.isAuthenticated && user.email === post.author) {
-        if (window.webkitConvertPointFromNodeToPage("Delete this post?")) {
+        if (window.confirm("Delete this post?") === true) {
           const postRef = firebase.database().ref("posts/" + post.key);
           //remove() is a firebase method
           postRef.remove();
