@@ -41,7 +41,6 @@ const PostForm = ({ post: propsPost, addNewPost, updatePost }) => {
         }
     }
     if (saved === true) {
-        console.log("Post saved");
         return <Redirect to="/" />
     }
     return (
@@ -82,4 +81,4 @@ const PostForm = ({ post: propsPost, addNewPost, updatePost }) => {
     );
 }
 
-export default PostForm; 
+export default PostForm;
