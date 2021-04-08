@@ -82,4 +82,4 @@ const PostForm = ({ post: propsPost, addNewPost, updatePost }) => {
     );
 }
 
-export default PostForm;
+export default PostForm; 
