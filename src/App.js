@@ -82,6 +82,9 @@ const App = (props) => {
       date: Date.now(),
     });
     setFlashMessage(`updated`);
+    return (
+      <Redirect to="/" />
+    );
   };
 
   const deletePost = (post) => {
