@@ -45,6 +45,10 @@ const App = (props) => {
         setUser({ isAuthenticated: false});
       })
       .catch((error) => console.error(error));
+    setFlashMessage(`loggedOut`);
+    return (
+      <Redirect to="/" />
+    )
   };
 
   const setFlashMessage = (message) => {
@@ -57,7 +61,8 @@ const App = (props) => {
   const addNewPost = (post) => {
     const postsRef = firebase.database().ref("posts");
     post.slug = getNewSlugFromTitle(post.title);
-    //Remove the null key you set previously in the Route for /new. 
+    post.author = user.email; 
+    post.date = Date.now();
     delete post.key;
     setFlashMessage(`saved`);
     postsRef.push(post);
@@ -72,36 +77,43 @@ const App = (props) => {
     postRef.update({
       slug: getNewSlugFromTitle(post.title),
       title: post.title,
-      content: post.content
+      content: post.content,
+      author: user.email,
+      date: Date.now(),
     });
     setFlashMessage(`updated`);
   };
 
   const deletePost = (post) => {
-    if (window.confirm("Delete this post?")) {
-      const postRef = firebase.database().ref("posts/" + post.key);
-      //remove() is a firebase method.
-      postRef.remove();
-      setFlashMessage(`deleted`);
-    }
+      if (user.isAuthenticated && user.email === post.author) {
+        if (window.webkitConvertPointFromNodeToPage("Delete this post?")) {
+          const postRef = firebase.database().ref("posts/" + post.key);
+          //remove() is a firebase method
+          postRef.remove();
+          setFlashMessage(`deleted`);
+        }
+      } else {
+        setFlashMessage(`cannotDelete`);
+      }
   };
 
   useEffect(() => {
     const postsRef = firebase.database().ref("posts");
-    //The on() method gives a "snapshot" of what's in the database. 
+    //The on() firebase method gives a "snapshot" of what's in the database. 
     postsRef.on("value", (snapshot) => {
       const posts = snapshot.val();
-      //New array to contain new posts state values. 
       const postsState = [];
       //Loop through posts array. 
       for (let post in posts) {
         postsState.push({
           //Each post retrieved from Firebase is actually the post key, so this value is assigned to "key" in the object. 
           key: post,
-          //Bracket notation to access the key/value pairs from each post object returned from 
+          //Bracket notation to access the properties of the posts object.
           slug: posts[post].slug,
           title: posts[post].title,
           content: posts[post].content,
+          author: posts[post].author,
+          date: Date.now(),
         });
       }
       setPosts(postsState);
@@ -158,13 +170,12 @@ const App = (props) => {
                   (post) => post.slug === props.match.params.postSlug
                 );
                 if (post) {
-                  if (user.isAuthenticated) {
+                  if (user.isAuthenticated && post.author === user.email) {
                     return <PostForm updatePost={updatePost} post={post} />;
                   } else {
-                    return <Redirect to="/login" />;
+                    setFlashMessage(`cannotEdit`);
+                    return <Redirect to="/" />;
                   }
-                } else {
-                  return <Redirect to="/" />;
                 }
               }}
             />
