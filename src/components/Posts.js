@@ -12,7 +12,7 @@ const Posts = ({ posts, deletePost }) => {
                     <li key="empty">No posts yet!</li>
                 )}
                 {posts.map(post => (
-                    <li key={post.id}>
+                    <li key={post.key}>
                         <h2>
                             <Link to={`/post/${post.slug}`}>{post.title}</Link>
                         </h2>
