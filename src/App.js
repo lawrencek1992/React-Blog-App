@@ -127,6 +127,9 @@ const App = (props) => {
     <Router>
       <UserContext.Provider value={{ user, onLogin, onLogout }}>
         <div className="App">
+          <Helmet>
+            <title>Coding Blog</title>
+          </Helmet>
           <Header />
           {message && <Message type={message} />}
           <Switch>
