@@ -1,31 +1,33 @@
 import React, { useContext } from "react";
-import UserContext from "../context/UserContext";
-import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
 import { Link } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
-const Post = ({ post, deletePost }) => {
-  const { user } = useContext(UserContext);
-  const converter = new QuillDeltaToHtmlConverter(post.content.ops, {});
-  const contentHTML = converter.convert();
-  const postDate = new Date(post.date).toDateString();
-
-  return (
-    <article className="post container">
-      <h1>{ post.title }</h1>
-      {user.isAuthenticated && (
-        <p>
-          <Link to={`/edit/${post.slug}`}>Edit</Link>
-          {" | "}
-          <button className="linkLike" onClick={() => deletePost(post)}>Delete</button>
-        </p>
-      )}
-      <h4>{ postDate }</h4>
-      <div
-        className="content"
-        dangerouslySetInnerHTML={{ __html: contentHTML }}
-      />
-    </article>
-  );
+const Posts = ({ posts, deletePost }) => {
+    const { user } = useContext(UserContext);
+    return (
+        <article className="posts container">
+            <h1>Posts</h1>
+            <ul>
+                {posts.length < 1 && (
+                    <li key="empty">No posts yet!</li>
+                )}
+                {posts.map(post => (
+                    <li key={post.key}>
+                        <h2>
+                            <Link to={`/post/${post.slug}`}>{post.title}</Link>
+                        </h2>
+                        {user.isAuthenticated && user.email === post.author && (
+                        <p>
+                            <Link to={`/edit/${post.slug}`}>Edit</Link>
+                            {" | "}
+                            <button className="linkLike" onClick={() => deletePost(post)}>Delete</button>
+                        </p>
+                        )}
+                    </li>
+                ))}
+            </ul>
+        </article>
+    )
 };
 
-export default Post;
+export default Posts;
