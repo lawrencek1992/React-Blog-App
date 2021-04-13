@@ -62,7 +62,7 @@ const App = (props) => {
     const postsRef = firebase.database().ref("posts");
     post.slug = getNewSlugFromTitle(post.title);
     post.author = user.email; 
-    post.date = Date.now();
+    post.date = new Date().toDateString();
     delete post.key;
     setFlashMessage(`saved`);
     postsRef.push(post);
@@ -79,7 +79,7 @@ const App = (props) => {
       title: post.title,
       content: post.content,
       author: user.email,
-      date: Date.now(),
+      date: new Date().toDateString(),
     });
     setFlashMessage(`updated`);
     return (
