@@ -16,7 +16,7 @@ const Posts = ({ posts, deletePost }) => {
                         <h2>
                             <Link to={`/post/${post.slug}`}>{post.title}</Link>
                         </h2>
-                        {user.isAuthenticated && (
+                        {user.isAuthenticated && user.email === post.author && (
                         <p>
                             <Link to={`/edit/${post.slug}`}>Edit</Link>
                             {" | "}
