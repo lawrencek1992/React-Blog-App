@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../context/UserContext";
 import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
+import { Link } from "react-router-dom";
 
-const Post = ({ post }) => {
+const Post = ({ post, deletePost }) => {
+  const { user } = useContext(UserContext);
   const converter = new QuillDeltaToHtmlConverter(post.content.ops, {});
   const contentHTML = converter.convert();
   const postDate = new Date(post.date).toDateString();
@@ -9,6 +12,13 @@ const Post = ({ post }) => {
   return (
     <article className="post container">
       <h1>{ post.title }</h1>
+      {user.isAuthenticated && (
+        <p>
+          <Link to={`/edit/${post.slug}`}>Edit</Link>
+          {" | "}
+          <button className="linkLike" onClick={() => deletePost(post)}>Delete</button>
+        </p>
+      )}
       <h4>{ postDate }</h4>
       <div
         className="content"
