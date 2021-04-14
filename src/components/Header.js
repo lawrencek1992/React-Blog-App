@@ -6,6 +6,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Header = (props) => {
     const { user, onLogout } = useContext(UserContext);
@@ -50,6 +51,12 @@ const Header = (props) => {
                     </li>
                 )}
             </ul>
+            {user.isAuthenticated && (
+                <div className="user">
+                    Signed in as: <b>{user.email + " "}</b>
+                    <FontAwesomeIcon icon={faUser} />
+                </div>
+            )}
         </header>
     );
 };
