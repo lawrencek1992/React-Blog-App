@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -23,7 +23,7 @@ const Header = (props) => {
                 {user.isAuthenticated && (
                     <li key="new-post">
                         <Link to="/new">
-                            <FontAwesomeIcon icon={faEdit} />
+                            <FontAwesomeIcon icon={faPen} />
                             New Post
                         </Link>
                     </li>
@@ -53,8 +53,10 @@ const Header = (props) => {
             </ul>
             {user.isAuthenticated && (
                 <div className="user">
-                    Signed in as: <b>{user.email + " "}</b>
-                    <FontAwesomeIcon icon={faUser} />
+                    <p>
+                        Signed in as: <b>{user.email + " "}</b>
+                        <FontAwesomeIcon icon={faUser} />
+                    </p>
                 </div>
             )}
         </header>
