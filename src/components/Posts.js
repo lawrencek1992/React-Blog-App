@@ -7,6 +7,7 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Posts = ({ posts, deletePost }) => {
     const { user } = useContext(UserContext);
+
     return (
         <article className="posts container">
             <h1>Posts</h1>
@@ -19,6 +20,8 @@ const Posts = ({ posts, deletePost }) => {
                         <h2>
                             <Link to={`/post/${post.slug}`}>{post.title}</Link>
                         </h2>
+                        <p><b>Author: </b>{post.author}</p>
+                        <p><b>Posted On: </b>{new Date(post.date).toDateString()}</p>
                         {user.isAuthenticated && user.email === post.author && (
                         <p>
                             <Link to={`/edit/${post.slug}`}>
