@@ -21,11 +21,6 @@ const Post = ({ post, deletePost }) => {
             <FontAwesomeIcon icon={faEdit} />
             Edit
           </Link>
-          {" | "}
-          <button className="linkLike" onClick={() => deletePost(post)}>
-            <FontAwesomeIcon icon={faTrashAlt} />
-            Delete
-          </button>
         </p>
       )}
       <h4>{ postDate }</h4>
