@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Quill from "react-quill";
 
 import "react-quill/dist/quill.snow.css";
 
-const PostForm = ({ post: propsPost, addNewPost, updatePost }) => {
+const PostForm = ({ post: propsPost, addNewPost, updatePost, cancelPost }) => {
     const [saved, setSaved] = useState(false);
     const [post, setPost] = useState({...propsPost});
 
@@ -45,6 +45,7 @@ const PostForm = ({ post: propsPost, addNewPost, updatePost }) => {
     }
     return (
         <form className="container" onSubmit={handleAddNewPost}>
+            <Link to={"/"} id="cancel">X</Link>
             <h1>Add New Post</h1>
             <p>
                 <label htmlFor="form-title">Title:</label>
