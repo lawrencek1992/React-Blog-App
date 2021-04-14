@@ -4,7 +4,6 @@ import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Post = ({ post, deletePost }) => {
   const { user } = useContext(UserContext);
