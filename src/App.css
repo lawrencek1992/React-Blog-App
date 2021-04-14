@@ -90,6 +90,8 @@ html {
     margin: 10px;
     padding: 5px;
     align-content: center;
+    /* Is this really the color you want though??? */
+    background: lightGrey;
   }
 
   .App article h3 {
