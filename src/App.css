@@ -1,28 +1,10 @@
-
-.App-header {
-  background-color: #282c34;
-  min-height: 10vh;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "nav . user";
+html {
+  /* Change the color though.... */
+  background: purple;
 }
 
-.App-link {
-  color: #61dafb;
+.App {
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.App {}
 
   .App a {
     color: #26738D;
@@ -46,10 +28,18 @@
   }
 
 .App-header {
-  background-color: #353944;
+  background: #353944;
   color: #fff;
   font-size: calc(10px + 1vmin);
-  padding: 1rem;
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  width: 97vw;
+  min-height: 10vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "nav . user";
+  z-index: 10;
 }
 
   .App-header a {
@@ -81,16 +71,25 @@
   }
 
 .App article {
-  padding: 1rem;  
+  position: relative;
+  top: 15vh;
 }
 
   .App article ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
     margin: 0;
-    padding: 0;  
+    padding: 0;
   }
 
   .App article ul li {
     list-style: none;
+    border: solid #353944;
+    border-radius: 6px;
+    margin: 10px;
+    padding: 5px;
+    align-content: center;
   }
 
   .App article h3 {
@@ -120,6 +119,20 @@
  .App form {
   padding: 1rem;
 }
+
+  .App form a#cancel {
+    padding: 5px 9px;
+    text-decoration: none;
+    color: #353944;
+    background-color: #e3e3e3;
+    border: 0.3px #333333 solid;
+    border-radius: 4px;
+    margin-left: 96%;
+  }
+
+  .App form button#cancel {
+    margin-left: 97%;
+  }
 
   .App form input {
     border: 1px solid #ccc;
