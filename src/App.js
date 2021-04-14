@@ -6,6 +6,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { useStorageState } from "react-storage-hooks";
+import { Helmet } from "react-helmet";
 
 import UserContext from "./context/UserContext";
 import Header from "./components/Header";
