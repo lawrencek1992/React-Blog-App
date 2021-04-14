@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Header = (props) => {
     const { user, onLogout } = useContext(UserContext);
@@ -42,7 +43,10 @@ const Header = (props) => {
                 )}
                 {!user.isAuthenticated && (
                     <li key="logout">
-                        <Link to="/login">Login</Link>
+                        <Link to="/login">
+                            <FontAwesomeIcon icon={faSignInAlt} />
+                            Login
+                        </Link>
                     </li>
                 )}
             </ul>
