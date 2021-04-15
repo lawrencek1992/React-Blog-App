@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import UserContext from "../context/UserContext";
 import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
 import { Link } from "react-router-dom";
+
+import Buttons from "./Buttons";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
@@ -27,6 +30,9 @@ const Post = ({ post, deletePost }) => {
         className="content"
         dangerouslySetInnerHTML={{ __html: contentHTML }}
       />
+      <p>
+        <Buttons />
+      </p>
     </article>
   );
 };
