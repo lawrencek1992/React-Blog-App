@@ -4,7 +4,7 @@ import Quill from "react-quill";
 
 import "react-quill/dist/quill.snow.css";
 
-const PostForm = ({ post: propsPost, addNewPost, updatePost, cancelPost }) => {
+const PostForm = ({ post: propsPost, addNewPost, updatePost, cancel }) => {
     const [saved, setSaved] = useState(false);
     const [post, setPost] = useState({...propsPost});
 
@@ -45,7 +45,6 @@ const PostForm = ({ post: propsPost, addNewPost, updatePost, cancelPost }) => {
     }
     return (
         <form className="container" onSubmit={handleAddNewPost}>
-            <Link to={"/"} id="cancel">X</Link>
             <h1>Add New Post</h1>
             <p>
                 <label htmlFor="form-title">Title:</label>
@@ -77,6 +76,7 @@ const PostForm = ({ post: propsPost, addNewPost, updatePost, cancelPost }) => {
             />
             <p>
                 <button type="submit">Submit</button>
+                <button type="cancel" onClick={cancel}>Cancel</button>
             </p>
         </form>
     );
