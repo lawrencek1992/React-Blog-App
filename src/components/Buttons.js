@@ -19,7 +19,7 @@ const sharingButtons = () => {
 
     return (
         <div style={buttonsWrapperStyles}>
-            <p><b>Share Post:</b></p>
+            <p className="share-msg"><b>Share Post:</b></p>
         {/* The Facebook button isn't working. You couldn't fit it. You opened an issue about it on Github and are waiting for a response. Keep button commented out for now. */}
             {/* <Facebook url={url} /> */}
             <Twitter url={url} shareText={shareText} />
