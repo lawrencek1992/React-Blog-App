@@ -4,9 +4,9 @@ import Quill from "react-quill";
 
 import "react-quill/dist/quill.snow.css";
 
-const PostForm = ({ post: propsPost, addNewPost, updatePost, cancel }) => {
+function PostForm({ post: propsPost, addNewPost, updatePost, }) {
     const [saved, setSaved] = useState(false);
-    const [post, setPost] = useState({...propsPost});
+    const [post, setPost] = useState({ ...propsPost });
 
     const prevPostRef = useRef();
     useEffect(() => {
@@ -34,14 +34,10 @@ const PostForm = ({ post: propsPost, addNewPost, updatePost, cancel }) => {
                 addNewPost(post);
             }
             setSaved(true);
-        } else if (!post.title) {
-            alert("Title required in order to submit post!");
-        } else if (!post.content) {
-            alert("Please write a post before submitting!");
         }
-    }
+    };
     if (saved === true) {
-        return <Redirect to="/" />
+        return <Redirect to="/" />;
     }
     return (
         <form className="container" onSubmit={handleAddNewPost}>
@@ -53,13 +49,11 @@ const PostForm = ({ post: propsPost, addNewPost, updatePost, cancel }) => {
                     defaultValue={post.title}
                     id="form-title"
                     value={post.title}
-                    onChange={(event) => 
-                        setPost({
+                    required
+                    onChange={(event) => setPost({
                         ...post,
                         title: event.target.value
-                        })
-                    }
-                />
+                    })} />
             </p>
             <p>
                 <label htmlFor="form-content">Content:</label>
@@ -67,16 +61,16 @@ const PostForm = ({ post: propsPost, addNewPost, updatePost, cancel }) => {
             <Quill
                 ref={quillRef}
                 defaultValue={post.content}
+                required
                 onChange={(content, delta, source, editor) => {
                     setPost({
                         ...post,
-                        content: editor.getContents() 
+                        content: editor.getContents()
                     });
-                }}
-            />
+                } } />
             <p>
                 <button type="submit">Submit</button>
-                <button type="cancel" onClick={cancel}>Cancel</button>
+                <Link type="cancel" to="/">Cancel</Link>
             </p>
         </form>
     );
