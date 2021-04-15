@@ -1,187 +1,33 @@
-html {
-  /* Change the color though.... */
-  background: purple;
+import React from "react";
+import {
+    Email,
+    Facebook,
+    Pinterest,
+    Reddit,
+    Twitter
+} from "react-sharingbuttons";
+
+const buttonsWrapperStyles = {
+    paddingTop: 50,
+    marginTop: 75,
+    marginBottom: 100,
 }
 
-.App {
+const sharingButtons = () => {
+    const url = "https://github/come/caspg/react-sharingbuttons";
+    const shareText = "Check out this post!";
+
+    return (
+        <div style={buttonsWrapperStyles}>
+            <p><b>Share Post:</b></p>
+        {/* The Facebook button isn't working. You couldn't fit it. You opened an issue about it on Github and are waiting for a response. Keep button commented out for now. */}
+            {/* <Facebook url={url} /> */}
+            <Twitter url={url} shareText={shareText} />
+            <Email url={url} subject={shareText} />
+            <Pinterest url={url} shareText={shareText} mediaSrc={url}/>
+            <Reddit url={url} shareText={shareText} />
+        </div>
+    );
 }
 
-  .App a {
-    color: #26738D;
-  }
-  
-  .App h1 {
-    font-size: 2rem;
-  }
-
-  .App h2 {
-    color: #353944;
-  }
-
-  .App h3 a {
-    color: #353944;
-  }
-
-  .App .container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-.App-header {
-  background: #353944;
-  color: #fff;
-  font-size: calc(10px + 1vmin);
-  padding: 15px;
-  position: fixed;
-  top: 0;
-  width: 97vw;
-  min-height: 10vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "nav . user";
-  z-index: 10;
-}
-
-  .App-header a {
-    color:#fff;
-    font-weight: normal;
-  }
-  .App-header ul {    
-    padding: 0;
-    grid-area: nav;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-  
-  .App-header li {
-    list-style: none;
-    padding: 1rem;
-    font-weight: bold;
-  }
-
-  .App-header li:first-child {
-    padding-left: 0; 
-  }
-
-  .App-header div {
-    grid-area: user;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-.App article {
-  position: relative;
-  top: 15vh;
-}
-
-  .App article ul {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    margin: 0;
-    padding: 0;
-  }
-
-  .App article ul li {
-    list-style: none;
-    border: solid #353944;
-    border-radius: 6px;
-    margin: 10px;
-    padding: 5px;
-    align-content: center;
-    /* Is this really the color you want though??? */
-    background: lightGrey;
-  }
-
-  .App article h3 {
-    font-size: calc(14px + 2vmin);
-  }
-
-.App-link {
-  color: #61dafb;
-}
-
-.App-message { 
-  background-color: #55A9D6; 
-  color: white;
-  padding: 2rem 1rem;
-  text-shadow: 0 1px 0 #444;
-}
-
-  .App-message.saved {
-    background: #51BB7A;
-  }
-
-  .App-message.deleted {
-    background: #FF3F69;
-  }
-
-
- .App form {
-  padding: 1rem;
-}
-
-  .App form a#cancel {
-    padding: 5px 9px;
-    text-decoration: none;
-    color: #353944;
-    background-color: #e3e3e3;
-    border: 0.3px #333333 solid;
-    border-radius: 4px;
-    margin-left: 96%;
-  }
-
-  .App form button#cancel {
-    margin-left: 97%;
-  }
-
-  .App form input {
-    border: 1px solid #ccc;
-    padding: .3rem;
-  }  
-
-  .App form label {
-    display: block;
-    padding: .5rem 0;
-  }
-
-  .App form input#form-title {
-    min-width: calc(100% - 20px);
-    padding: 10px;
-    font-size: 1rem;
-  }
-
-  .App form .ql-editor {
-    min-height: 4rem;
-  }
-  
-  .App form button[type="submit"] {
-    border: 1px #ccc solid;
-    background: white;
-    font-size: 1rem;
-    padding: .5rem 1rem;
-  }
-  .App form button[type="submit"]:hover {
-    cursor: pointer;
-  }
-
-.App button.linkLike {
-  border: none;
-  font-size: inherit;
-  color: #26738D;
-  background: none;
-  text-decoration: underline;  
-}
-
-  .App button.linkLike:hover {
-     cursor: pointer;
-  }
-
-.App button.logoutLink {
-  border: none;
-  font-size: inherit;
-  color: white;
-  background: none;
-  text-decoration: underline;
-}
+export default sharingButtons;
