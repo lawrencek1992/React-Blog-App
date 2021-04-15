@@ -41,6 +41,11 @@ html {
     margin: 0 auto;
   }
 
+  .App .login-container{
+    margin-top: 100px;
+    margin-left: 200px;
+  }
+
   .App li.post-box {
     border: solid var(--cyan) 1px;
   }
@@ -94,10 +99,10 @@ html {
     color: var(--light-grey);
   }
 
-.App article {
-  position: relative;
-  top: 15vh;
-}
+  .App article {
+    position: relative;
+    top: 15vh;
+  }
 
   .App article ul {
     display: grid;
@@ -121,13 +126,13 @@ html {
     font-size: calc(14px + 2vmin);
   }
 
-.App-link {
-  color: var(--purple);
-}
+  .App-link {
+    color: var(--purple);
+  }
 
-.App-link:hover {
-  color: var(--cyan);
-}
+  .App-link:hover {
+    color: var(--cyan);
+  }
 
 .App-message { 
   background-color: var(--cyan); 
