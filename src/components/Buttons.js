@@ -1,0 +1,33 @@
+import React from "react";
+import {
+    Email,
+    Facebook,
+    Pinterest,
+    Reddit,
+    Twitter
+} from "react-sharingbuttons";
+
+const buttonsWrapperStyles = {
+    paddingTop: 50,
+    marginTop: 75,
+    marginBottom: 100,
+}
+
+const sharingButtons = () => {
+    const url = "https://github/come/caspg/react-sharingbuttons";
+    const shareText = "Check out this post!";
+
+    return (
+        <div style={buttonsWrapperStyles}>
+            <p><b>Share Post:</b></p>
+        {/* The Facebook button isn't working. You couldn't fit it. You opened an issue about it on Github and are waiting for a response. Keep button commented out for now. */}
+            {/* <Facebook url={url} /> */}
+            <Twitter url={url} shareText={shareText} />
+            <Email url={url} subject={shareText} />
+            <Pinterest url={url} shareText={shareText} mediaSrc={url}/>
+            <Reddit url={url} shareText={shareText} />
+        </div>
+    );
+}
+
+export default sharingButtons;
