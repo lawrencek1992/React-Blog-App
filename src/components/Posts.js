@@ -21,7 +21,7 @@ const Posts = ({ posts, deletePost }) => {
                             <Link to={`/post/${post.slug}`}>{post.title}</Link>
                         </h2>
                         <p><b>Author: </b>{post.author}</p>
-                        <p><b>Posted On: </b>{new Date(post.date).toDateString()}</p>
+                        <p><b>Posted On: </b>{post.date}</p>
                         {user.isAuthenticated && user.email === post.author && (
                         <p>
                             <Link to={`/edit/${post.slug}`}>
