@@ -15,11 +15,11 @@ const Login = (props) => {
         <form className="login-container" name="login" onSubmit={handleLogin}>
             <p>
                 <label htmlFor="email" className="email-input">Email:</label>
-                <input type="email" onChange={(e) => setEmail(e.target.value)} />
+                <input type="email" onChange={(e) => setEmail(e.target.value)}\\ />
             </p>
             <p>
                 <label htmlFor="password" className="passwordInput">Password:</label>
-                <input type="password" onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" onChange={(e) => setPassword(e.target.value)}\ />
             </p>
             <p>
                 <button type="submit" disabled={!email && !password}>Login</button>
