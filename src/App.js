@@ -61,12 +61,17 @@ const App = (props) => {
 
   const addNewPost = (post) => {
     const postsRef = firebase.database().ref("posts");
+    const dateNow = new Date(Date.now());
+    const dateString = dateNow.toDateString();
     post.slug = getNewSlugFromTitle(post.title);
     post.author = user.email; 
-    post.date = Date.now();
+    post.date = dateString;
     delete post.key;
     setFlashMessage(`saved`);
     postsRef.push(post);
+    return (
+      <Redirect to="/" />
+    )
   };
 
   const getNewSlugFromTitle = (title) => 
@@ -74,13 +79,14 @@ const App = (props) => {
 
   const updatePost = (post) => {
     const postRef = firebase.database().ref("posts/" + post.key);
-    //update() is a firebase method
+    const dateNow = new Date(Date.now());
+    const dateString = dateNow.toDateString();
     postRef.update({
       slug: getNewSlugFromTitle(post.title),
       title: post.title,
       content: post.content,
       author: user.email,
-      date: Date.now(),
+      date: dateString,
     });
     setFlashMessage(`updated`);
     return (
@@ -92,7 +98,6 @@ const App = (props) => {
       if (user.isAuthenticated && user.email === post.author) {
         if (window.confirm("Delete this post?") === true) {
           const postRef = firebase.database().ref("posts/" + post.key);
-          //remove() is a firebase method
           postRef.remove();
           setFlashMessage(`deleted`);
         }
@@ -107,22 +112,20 @@ const App = (props) => {
     postsRef.on("value", (snapshot) => {
       const posts = snapshot.val();
       const postsState = [];
-      //Loop through posts array. 
       for (let post in posts) {
         postsState.push({
           //Each post retrieved from Firebase is actually the post key, so this value is assigned to "key" in the object. 
           key: post,
-          //Bracket notation to access the properties of the posts object.
           slug: posts[post].slug,
           title: posts[post].title,
           content: posts[post].content,
           author: posts[post].author,
-          date: Date.now(),
+          date: posts[post].date,
         });
       }
       setPosts(postsState);
     });
-  }, [setPosts]);
+  }, [setPosts], [setPostDate]);
 
   return (
     <Router>
