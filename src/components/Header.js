@@ -31,7 +31,7 @@ const Header = (props) => {
                 {user.isAuthenticated && (
                     <li key="logout">
                         <button
-                            className="logoutLink"
+                            className="linkLike"
                             onClick={(event) => {
                                 event.preventDefault();
                                 onLogout();
