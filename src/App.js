@@ -125,7 +125,7 @@ const App = (props) => {
       }
       setPosts(postsState);
     });
-  }, [setPosts], [setPostDate]);
+  }, [setPosts]);
 
   return (
     <Router>
