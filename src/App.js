@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,7 +13,6 @@ import Header from "./components/Header";
 import Posts from "./components/Posts";
 import Post from "./components/Post";
 import PostForm from "./components/PostForm";
-import Message from "./components/Message";
 import Login from "./components/Login";
 import firebase from "./firebase";
 import NotFound from "./components/NotFound";
@@ -23,7 +22,6 @@ import "./App.css";
 const App = (props) => {
   const [user, setUser] = useStorageState(localStorage, "state-user", {});
   const [posts, setPosts] = useStorageState(localStorage, `state-posts`, []);
-  const [message, setMessage] = useState(null);
 
   const onLogin = (email, password) => {
     firebase
@@ -46,17 +44,9 @@ const App = (props) => {
         setUser({ isAuthenticated: false});
       })
       .catch((error) => console.error(error));
-    setFlashMessage(`loggedOut`);
     return (
       <Redirect to="/" />
     )
-  };
-
-  const setFlashMessage = (message) => {
-    setMessage(message);
-    setTimeout(() => {
-      setMessage(null);
-    }, 1600);
   };
 
   const addNewPost = (post) => {
@@ -67,7 +57,6 @@ const App = (props) => {
     post.author = user.email; 
     post.date = dateString;
     delete post.key;
-    setFlashMessage(`saved`);
     postsRef.push(post);
     return (
       <Redirect to="/" />
@@ -88,7 +77,6 @@ const App = (props) => {
       author: user.email,
       date: dateString,
     });
-    setFlashMessage(`updated`);
     return (
       <Redirect to="/" />
     );
@@ -99,11 +87,8 @@ const App = (props) => {
         if (window.confirm("Delete this post?") === true) {
           const postRef = firebase.database().ref("posts/" + post.key);
           postRef.remove();
-          setFlashMessage(`deleted`);
         }
-      } else {
-        setFlashMessage(`cannotDelete`);
-      }
+      } 
   };
 
   useEffect(() => {
@@ -135,7 +120,6 @@ const App = (props) => {
             <title>Coding Blog</title>
           </Helmet>
           <Header />
-          {message && <Message type={message} />}
           <Switch>
             <Route
               exact
@@ -182,9 +166,6 @@ const App = (props) => {
                 if (post) {
                   if (user.isAuthenticated && post.author === user.email) {
                     return <PostForm updatePost={updatePost} post={post} />;
-                  } else {
-                    setFlashMessage(`cannotEdit`);
-                    return <Redirect to="/" />;
                   }
                 }
               }}
