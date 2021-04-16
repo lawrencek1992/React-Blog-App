@@ -8,11 +8,10 @@ import Buttons from "./Buttons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
-const Post = ({ post, deletePost }) => {
+const Post = ({ post }) => {
   const { user } = useContext(UserContext);
   const converter = new QuillDeltaToHtmlConverter(post.content.ops, {});
   const contentHTML = converter.convert();
-  const postDate = new Date(post.date).toDateString();
 
   return (
     <article className="post container">
@@ -25,7 +24,7 @@ const Post = ({ post, deletePost }) => {
           </Link>
         </p>
       )}
-      <h4>{ postDate }</h4>
+      <h4>{ post.date }</h4>
       <div
         className="content"
         dangerouslySetInnerHTML={{ __html: contentHTML }}
