@@ -20,7 +20,7 @@ import NotFound from "./components/NotFound";
 import "./App.css";
 
 const App = (props) => {
-  const [user, setUser] = useStorageState(localStorage, "state-user", {});
+  const [user, setUser] = useStorageState(localStorage, `state-user`, {});
   const [posts, setPosts] = useStorageState(localStorage, `state-posts`, []);
 
   const onLogin = (email, password) => {
@@ -28,10 +28,19 @@ const App = (props) => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((response) => {
-        setUser({
-          email: response.user["email"],
-          isAuthenticated: true,
-        });
+        if (response.user["email"].includes("demo")) {
+          setUser({
+            email: response.user["email"],
+            isAuthenticated: true,
+            username: "Demo Account",
+          });
+        } else {
+          setUser({
+            email: response.user["email"],
+            isAuthenticated: true,
+            username: "Kelly Lawrence",
+          })
+        }
       })
       .catch((error) => console.error(error));
     };
@@ -55,6 +64,11 @@ const App = (props) => {
     const dateString = dateNow.toDateString();
     post.slug = getNewSlugFromTitle(post.title);
     post.author = user.email; 
+    if (user.email.includes("demo")) {
+      post.username = "Demo Account";
+    } else {
+      post.username = "Kelly Lawrence";
+    }
     post.date = dateString;
     delete post.key;
     postsRef.push(post);
@@ -74,7 +88,6 @@ const App = (props) => {
       slug: getNewSlugFromTitle(post.title),
       title: post.title,
       content: post.content,
-      author: user.email,
       date: dateString,
     });
     return (
