@@ -54,7 +54,7 @@ const Header = (props) => {
             {user.isAuthenticated && (
                 <div className="user">
                     <p>
-                        Signed in as: <b>{user.email + " "}</b>
+                        Signed in as: <b>{user.username + " "}</b>
                         <FontAwesomeIcon icon={faUser} />
                     </p>
                 </div>
