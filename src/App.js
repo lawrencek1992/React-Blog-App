@@ -82,13 +82,13 @@ const App = (props) => {
     );
   };
 
-  const deletePost = (post) => {
-      if (user.isAuthenticated && user.email === post.author) {
-        if (window.confirm("Delete this post?") === true) {
-          const postRef = firebase.database().ref("posts/" + post.key);
-          postRef.remove();
-        }
-      } 
+  const deletePost = ( post ) => {
+    if (user.isAuthenticated && user.email === post.author) {
+      if (window.confirm("Delete this post?") === true) {
+        const postRef = firebase.database().ref("posts/" + post.key);
+        postRef.remove();
+      }
+    }
   };
 
   useEffect(() => {
