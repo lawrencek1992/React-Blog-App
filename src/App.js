@@ -62,6 +62,7 @@ const App = (props) => {
         setUser({ isAuthenticated: false});
       })
       .catch((error) => console.error(error));
+    setFlashMessage(`logout`);
     return (
       <Redirect to="/" />
     )

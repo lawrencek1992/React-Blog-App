@@ -117,6 +117,10 @@ html {
     background: var(--red);
   }
 
+  .App-message.logout {
+    background: var(--red);
+  }
+
   /* Styling for Posts.js component */
   .App article {
     position: relative;

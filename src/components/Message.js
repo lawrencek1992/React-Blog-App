@@ -5,6 +5,7 @@ const Message = ({ type}) => {
         saved: "Your post has been saved!",
         updated: "Your post has been updated!",
         deleted: "Your post has been deleted!",
+        logout: "You have been logged out.",
     };
     return (
         <div className={`App-message ${type}`}>
