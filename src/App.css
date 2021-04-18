@@ -1,11 +1,13 @@
 /* Overall styling */
 :root {
-  /* Store color scheme hex codes in variables */
+  /* Store color scheme hex codes in variables for easy use*/
   --black: #121212;
+  --light-black: #1a1a1a;
   --dark-grey: #242424;
   --medium-grey: #363636;
   --light-grey: #808080;
   --white: #fff;
+  --dark-white: #cccccc;
   --purple: #BB86FC;
   --cyan: #03FAC6;
   --red: #CF6679;
@@ -134,13 +136,38 @@ html {
     border: solid var(--dark-grey);
     border-radius: 6px;
     margin: 10px;
-    padding: 5px;
+    padding: 5px 5px 5px 15px;
     align-content: center;
     background: var(--dark-grey);
   }
 
   .App article ul li.logged-in {
     background-color: var(--medium-grey);
+  }
+
+  .App article ul li p.not-author-preview {
+    font-size: 0.8em;
+    margin-left: 3em;
+    margin-right: 3em;
+    padding: 1em;
+    color: var(--light-grey);
+    background-color: var(--light-black);
+    border-radius: 4px;
+  }
+  
+  .App article ul a.see-more {
+    font-size: 2em;
+    text-decoration: none;
+  }
+
+  .App article ul li p.author-preview {
+    font-size: 0.8em;
+    margin-left: 3em;
+    margin-right: 3em;
+    padding: 1em;
+    color: var(--dark-white);
+    background-color: var(--dark-grey);
+    border-radius: 4px;
   }
 
   .App article h3 {

@@ -1,13 +1,27 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
-import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Posts = ({ posts, deletePost, post }) => {
     const { user } = useContext(UserContext);
+
+    const truncatePost = (post) => {
+        if ( post.length < 100 ) {
+            return "' " + post + "'";
+        }
+        const postPreview = post.replace(/^(.{100}[^\s]*).*/, "$1");
+        console.log(postPreview);
+        if ( postPreview.charAt(postPreview.length -1) !== /[^a-zA-Z]/ ) {
+            const newPreview = postPreview.slice(0, -2);
+            console.log(newPreview);
+            return "' " + newPreview + "...'";
+        } else {
+            return "' " + postPreview + "...'";
+        }
+    } 
 
     return (
         <article className="posts container">
@@ -38,8 +52,15 @@ const Posts = ({ posts, deletePost, post }) => {
                             </button>
                         </p>
                         )}
-                        <p className="postPreview"><em>The content of this post is: " {post.content.ops[0].insert}"</em></p>
-                        {console.log(post.content.ops[0].insert)}
+                        <p className={(user.isAuthenticated && user.email === post.author) ? "author-preview" : "not-author-preview"}>
+                            <em>{truncatePost(post.content.ops[0].insert)}</em>
+                            <br />
+                            {post.content.ops[0].insert.length > 100 && (
+                                <Link to={`/post/${post.slug}`} className="see-more">
+                                    <span>. . .</span>
+                                </Link>
+                            )}
+                        </p>
                     </li>
                 ))}
             </ul>
