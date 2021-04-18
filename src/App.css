@@ -1,4 +1,6 @@
+/* Overall styling */
 :root {
+  /* Store color scheme hex codes in variables */
   --black: #121212;
   --dark-grey: #242424;
   --light-grey: #808080;
@@ -36,6 +38,7 @@ html {
     color: var(--purple);
   }
 
+  /* Styling for Login.js component */
   .App .container {
     max-width: 800px;
     margin: 0 auto;
@@ -50,6 +53,7 @@ html {
     border: solid var(--cyan) 1px;
   }
 
+/* Styling for header */
 .App-header {
   background: var(--dark-grey);
   color: var(--white);
@@ -99,6 +103,7 @@ html {
     color: var(--light-grey);
   }
 
+  /* Styling for Posts.js component */
   .App article {
     position: relative;
     top: 15vh;
@@ -122,6 +127,10 @@ html {
     background: var(--dark-grey);
   }
 
+  .App article ul li.logged-in {
+    border: solid var(--cyan) 1px;
+  }
+
   .App article h3 {
     font-size: calc(14px + 2vmin);
   }
@@ -134,6 +143,7 @@ html {
     color: var(--cyan);
   }
 
+/* Styling for PostForm.js compoenent */
  .App form {
   padding: 1rem;
 }
@@ -215,6 +225,7 @@ html {
     inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
   }
 
+/* Button styling */
 .App button.linkLike {
   border: none;
   font-size: inherit;
@@ -232,6 +243,7 @@ html {
   color: var(--light-grey);
 }
 
+/* Styling for social media buttons */
 .react-sharing-button__link {
   display: inline-block;
   text-decoration: none;

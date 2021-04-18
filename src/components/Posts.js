@@ -1,4 +1,3 @@
-
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
@@ -9,7 +8,6 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 const Posts = ({ posts, deletePost }) => {
     const { user } = useContext(UserContext);
 
-
     return (
         <article className="posts container">
             <h1>Posts</h1>
@@ -18,7 +16,7 @@ const Posts = ({ posts, deletePost }) => {
                     <li key="empty">No posts yet!</li>
                 )}
                 {posts.map(post => (
-                    <li key={post.key}>
+                    <li key={post.key} className={(user.isAuthenticated && user.email === post.author) ? "logged-in" : ""}>
                         <h2>
                             <Link to={`/post/${post.slug}`}>{post.title}</Link>
                         </h2>
