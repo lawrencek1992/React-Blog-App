@@ -162,7 +162,7 @@ html {
 
 /* Styling for PostForm.js component */
  .App form {
-  padding: 1rem;
+  padding: 7rem;
 }
 
   .App form input {
@@ -213,13 +213,10 @@ html {
     font-size: 1rem;
     padding: .5rem 1rem;
   }
+
   .App form button[type="submit"]:hover {
     cursor: pointer;
     background-color: var(--cyan);
-    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
-              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
   }
 
   .App form a {
@@ -235,11 +232,7 @@ html {
   .App form a:hover {
     cursor: pointer;
     color: var(--black);
-    background-color: var(--cyan);
-    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
-              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+    background-color: var(--red);
   }
 
 /* Button styling */
@@ -294,10 +287,6 @@ html {
 
 .react-sharing-button--email:hover {
   background-color: var(--cyan);
-  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
-              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
 
 .react-sharing-button--facebook {
@@ -306,10 +295,6 @@ html {
 
 .react-sharing-button--facebook:hover {
   background-color: var(--cyan);
-  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
-              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
 
 .react-sharing-button--pinterest {
@@ -318,10 +303,6 @@ html {
 
 .react-sharing-button--pinterest:hover {
   background-color: var(--cyan);
-  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
-              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
 
 .react-sharing-button--reddit {
@@ -330,10 +311,6 @@ html {
 
 .react-sharing-button--reddit:hover {
   background-color: var(--cyan);
-  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
-              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
 
 .react-sharing-button--twitter {
@@ -342,8 +319,4 @@ html {
 
 .react-sharing-button--twitter:hover {
   background-color: var(--cyan);
-  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
-              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
