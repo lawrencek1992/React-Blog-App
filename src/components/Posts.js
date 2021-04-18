@@ -12,16 +12,15 @@ const Posts = ({ posts, deletePost, post }) => {
         if ( post.length < 100 ) {
             return "' " + post + "'";
         }
-        const postPreview = post.replace(/^(.{100}[^\s]*).*/, "$1");
-        console.log(postPreview);
-        if ( postPreview.charAt(postPreview.length -1) !== /[^a-zA-Z]/ ) {
-            const newPreview = postPreview.slice(0, -2);
-            console.log(newPreview);
+        const postPreview = post.replace(/^(.{100}[^\s]*).*/, "$1").trim();
+        const lastChar = postPreview.charAt(postPreview.length - 1);
+        if (lastChar === ","|"."|":"|";"|"!" ) {
+            const newPreview = postPreview.slice(0, -1);
             return "' " + newPreview + "...'";
         } else {
             return "' " + postPreview + "...'";
-        }
-    } 
+        } 
+    };
 
     return (
         <article className="posts container">
