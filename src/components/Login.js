@@ -1,4 +1,5 @@
 import React, {useState, useContext} from "react";
+import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 
 const Login = (props) => {
@@ -14,15 +15,16 @@ const Login = (props) => {
     return (
         <form className="login-container" name="login" onSubmit={handleLogin}>
             <p>
-                <label htmlFor="email" className="email-input">Email:</label>
-                <input type="email" onChange={(e) => setEmail(e.target.value)} />
+                <label htmlFor="email">Email:</label>
+                <input type="email" className="email-input" onChange={(e) => setEmail(e.target.value)} />
             </p>
             <p>
-                <label htmlFor="password" className="passwordInput">Password:</label>
-                <input type="password" onChange={(e) => setPassword(e.target.value)} />
+                <label htmlFor="password">Password:</label>
+                <input type="password" className="password-input" onChange={(e) => setPassword(e.target.value)} />
             </p>
             <p>
                 <button type="submit" disabled={!email && !password}>Login</button>
+                <Link type="cancel" to="/">Cancel</Link>
             </p>
         </form>
     );

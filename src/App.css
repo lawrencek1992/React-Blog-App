@@ -45,14 +45,9 @@ html {
     margin: 0 auto;
   }
 
-  .App .login-container{
-    margin-top: 100px;
-    margin-left: 200px;
-  }
-
-  .App li.post-box {
-    border: solid var(--cyan) 1px;
-  }
+  .App .email-input, .password-input {
+    width: 25vw
+  } 
 
 /* Styling for header */
 .App-header {
