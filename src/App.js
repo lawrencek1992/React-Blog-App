@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,12 +16,21 @@ import PostForm from "./components/PostForm";
 import Login from "./components/Login";
 import firebase from "./firebase";
 import NotFound from "./components/NotFound";
+import Message from "./components/Message";
 
 import "./App.css";
 
 const App = (props) => {
   const [user, setUser] = useStorageState(localStorage, `state-user`, {});
   const [posts, setPosts] = useStorageState(localStorage, `state-posts`, []);
+  const [message, setMessage] = useState(null);
+
+  const setFlashMessage = (message) => {
+    setMessage(message);
+    setTimeout(() => {
+      setMessage(null);
+    }, 1600);
+  }
 
   const onLogin = (email, password) => {
     firebase
@@ -72,6 +81,7 @@ const App = (props) => {
     post.date = dateString;
     delete post.key;
     postsRef.push(post);
+    setFlashMessage(`saved`);
     return (
       <Redirect to="/" />
     )
@@ -90,6 +100,7 @@ const App = (props) => {
       content: post.content,
       date: dateString,
     });
+    setFlashMessage(`updated`);
     return (
       <Redirect to="/" />
     );
@@ -100,6 +111,7 @@ const App = (props) => {
       if (window.confirm("Delete this post?") === true) {
         const postRef = firebase.database().ref("posts/" + post.key);
         postRef.remove();
+        setFlashMessage(`deleted`);
       }
     }
   };
@@ -133,6 +145,7 @@ const App = (props) => {
             <title>Coding Blog</title>
           </Helmet>
           <Header />
+          {message && <Message type={message} />}
           <Switch>
             <Route
               exact

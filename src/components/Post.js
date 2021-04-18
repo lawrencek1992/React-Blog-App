@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
-const Post = ({ post }) => {
+const Post = ({ post, setFlashMessage }) => {
   const { user } = useContext(UserContext);
   const converter = new QuillDeltaToHtmlConverter(post.content.ops, {});
   const contentHTML = converter.convert()
@@ -22,6 +22,7 @@ const Post = ({ post }) => {
       const postRef = firebase.database().ref("posts/" + post.key);
       postRef.remove();
       history.push('/');
+      setFlashMessage(`deleted`);
     }
   };
 

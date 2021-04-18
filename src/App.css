@@ -3,6 +3,7 @@
   /* Store color scheme hex codes in variables */
   --black: #121212;
   --dark-grey: #242424;
+  --medium-grey: #363636;
   --light-grey: #808080;
   --white: #fff;
   --purple: #BB86FC;
@@ -103,6 +104,22 @@ html {
     color: var(--light-grey);
   }
 
+  /* Styling for flash messages */
+  .App-message { 
+    display: block;
+    position: absolute;
+    background-color: var(--cyan); 
+    color: var(--black);
+    padding: 2rem 1rem;
+    z-index: 100 !important;
+    width: 100vw;
+    text-align: center;
+  }
+
+  .App-message.deleted {
+    background: var(--red);
+  }
+
   /* Styling for Posts.js component */
   .App article {
     position: relative;
@@ -128,7 +145,7 @@ html {
   }
 
   .App article ul li.logged-in {
-    border: solid var(--cyan) 1px;
+    background-color: var(--medium-grey);
   }
 
   .App article h3 {
@@ -143,7 +160,7 @@ html {
     color: var(--cyan);
   }
 
-/* Styling for PostForm.js compoenent */
+/* Styling for PostForm.js component */
  .App form {
   padding: 1rem;
 }
