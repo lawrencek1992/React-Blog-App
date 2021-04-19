@@ -351,34 +351,62 @@ html {
 /* Extra Large Screens */
 @media (max-width: 1600px) {
   .App form {
-    padding-top: 9rem;
+    padding-top: 8rem;
   }
   .App .login-container {
     position: fixed;
-    left: 4em;
+    left: 3em;
     top: 3em;
     font-size: 1.5rem;
   }
   .App-header {
-    font-size: 1.7rem;
     padding-top: 1em;
+    padding-right: 5em;
+    position: fixed;
+    width: 95vw;
+  }
+  .App .posts-container {
+    width: 70vw;
+    margin: auto;
+  }
+  .App .post-container {
+    width: 80vw;
+    padding-left: 7.5em;
   }
 }
 /* Large tablets or small laptops */
 @media (max-width: 1200px) {
-
+  .App-header {
+    padding-left: 1em;
+    padding-top: 2.1em;
+    padding-bottom: 0;
+  }
+  .App .login-container {
+    position: fixed;
+    left: 2em;
+    top: 0;
+  }
+  .App .posts-container {
+    width: 80vw;
+  }
+  .App .post-container {
+    width: 80vw;
+    padding-left: 5em;
+  }
+  .App form {
+    padding-top: 15em;
+  }
+  .App-messages {
+    padding-top: 10em;
+  }
 }
 /* Regular sized tablets */
 @media (max-width: 768px) {
-  .App-header  {
-    font-size: 1.4rem;
-  }
   .App .posts-container {
-    padding-left: 3rem;
-    padding-right: 3rem;
+    margin: auto;
   }
   .App .post-container {
-    padding-left: 3rem;
+    padding-left: 4rem;
     padding-right: 3rem;
   }
   .App form {
@@ -387,6 +415,61 @@ html {
 }
 /* Regular sized phones */
 @media (max-width: 480px) {
+  .App-header {
+    font-size: 12px;
+  }
+  .App .login-container {
+    width: 90vw;
+    height: auto;
+    padding-left: 2em;
+    padding-top: 10em;
+    font-size: 14px;
+  }
+  .App article ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    margin: 0;
+    padding: 0;
+  }
+  .App .post-container {
+    padding-left: 3em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .react-sharing-button__icon {
+    width: 1em;
+    height: 1em;
+    line-height: 1em;
+  }
   
+  .react-sharing-button__text {
+    padding-left: 0.4em;
+    line-height: 1.2em;
+    color: var(--black);
+  }
+  .App .buttons-div {
+    padding-bottom: 2em;
+    padding-top: 0;
+    margin-top: 0;
+  }
+  .App form {
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    padding-top: 7em;
+  }
 }
 /* Extra small devices */
+@media (max-width: 380px) {
+  .App-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "nav . user";
+    justify-content: center;
+    align-items: center;
+    padding-left: 3em;
+  }
+  .App .post-container {
+    padding-left: 2em;
+  }
+}
