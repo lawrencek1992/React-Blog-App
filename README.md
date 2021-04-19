@@ -9,7 +9,7 @@ _If you like this work, I am seeking a front end developer/UI developer position
 Clone the repository and use **node package manager** to install the coding blog. 
 
 ```bash
-gh repo clone lawrencek1992/React-Blog-App
+git clone https://github.com/lawrencek1992/React-Blog-App.git
 npm install 
 ```
 
