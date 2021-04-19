@@ -27,7 +27,7 @@ const Post = ({ post, setFlashMessage }) => {
   };
 
   return (
-    <article className="post container">
+    <article className="post-container">
       <h1>{ post.title }</h1>
       {user.isAuthenticated && user.email === post.author && (
         <p>

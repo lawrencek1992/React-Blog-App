@@ -346,3 +346,47 @@ html {
 .react-sharing-button--twitter:hover {
   background-color: var(--cyan);
 }
+
+/* MEDIA QUERIES */
+/* Extra Large Screens */
+@media (max-width: 1600px) {
+  .App form {
+    padding-top: 9rem;
+  }
+  .App .login-container {
+    position: fixed;
+    left: 4em;
+    top: 3em;
+    font-size: 1.5rem;
+  }
+  .App-header {
+    font-size: 1.7rem;
+    padding-top: 1em;
+  }
+}
+/* Large tablets or small laptops */
+@media (max-width: 1200px) {
+
+}
+/* Regular sized tablets */
+@media (max-width: 768px) {
+  .App-header  {
+    font-size: 1.4rem;
+  }
+  .App .posts-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  .App .post-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  .App form {
+    padding-top: 10rem;
+  }
+}
+/* Regular sized phones */
+@media (max-width: 480px) {
+  
+}
+/* Extra small devices */

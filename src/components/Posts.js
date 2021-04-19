@@ -23,7 +23,7 @@ const Posts = ({ posts, deletePost, post }) => {
     };
 
     return (
-        <article className="posts container">
+        <article className="posts-container">
             <h1>Posts</h1>
             <ul>
                 {posts.length < 1 && (
