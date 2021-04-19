@@ -219,16 +219,16 @@ html {
 
   .ql-toolbar .ql-stroke {
     fill: none;
-    stroke: var(--white);
+    stroke: var(--purple);
   }
 
   .ql-toolbar .ql-fill {
-    fill: var(--white);
+    fill: var(--purple);
     stroke: none;
   }
 
   .ql-toolbar .ql-picker {
-    color: var(--white);
+    color: var(--purple);
   }
   
   .App form button[type="submit"] {
