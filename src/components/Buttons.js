@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Email,
     // Facebook,
@@ -13,8 +13,8 @@ const buttonsWrapperStyles = {
     marginBottom: 100,
 }
 
-const sharingButtons = () => {
-    const url = "https://github/come/caspg/react-sharingbuttons";
+const sharingButtons = ({ post }) => {
+    const url = `https://lawrence-coding-blog.netlify.app/post/${post.slug}`;
     const shareText = "Check out this post!";
 
     return (
