@@ -17,7 +17,6 @@ const Posts = ({ posts, deletePost, post }) => {
         // const preview = React.createElement("div", { dangerouslySetInnerHTML: { __html: contentHTML } });
         // return preview;
 
-
         const noHTML = contentHTML.replace(/<[^>]+>/g, '');
         const textOnly = noHTML.replace(/&#x?([0-9]{1,4}|[A-Z]);/gi, '');
         if ( textOnly.length < 130 ) {
