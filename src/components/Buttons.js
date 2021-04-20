@@ -14,7 +14,6 @@ const buttonsWrapperStyles = {
 }
 
 const Buttons = () => {
-    //const url = `https://lawrence-coding-blog.netlify.app/`;
     const url = window.location.href;
     const shareText = "Check out this blog!";
 
