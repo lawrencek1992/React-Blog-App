@@ -13,7 +13,7 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 const Post = ({ post, setFlashMessage }) => {
   const { user } = useContext(UserContext);
   const converter = new QuillDeltaToHtmlConverter(post.content.ops, {});
-  const contentHTML = converter.convert()
+  const contentHTML = converter.convert();
   const history = useHistory();
 
   // Unlike deletePost in App.js, this function uses history from react-router-dom to return the user back to the home page.
