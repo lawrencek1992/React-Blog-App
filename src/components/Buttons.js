@@ -13,9 +13,9 @@ const buttonsWrapperStyles = {
     marginBottom: 100,
 }
 
-const sharingButtons = ({ post }) => {
-    console.log(post);
-    const url = `https://lawrence-coding-blog.netlify.app/`;
+const Buttons = () => {
+    //const url = `https://lawrence-coding-blog.netlify.app/`;
+    const url = window.location.href;
     const shareText = "Check out this blog!";
 
     return (
@@ -31,4 +31,4 @@ const sharingButtons = ({ post }) => {
     );
 }
 
-export default sharingButtons;
+export default Buttons;
