@@ -20,10 +20,10 @@ const Posts = ({ posts, deletePost, post }) => {
 
         const noHTML = contentHTML.replace(/<[^>]+>/g, '');
         const textOnly = noHTML.replace(/&#x?([0-9]{1,4}|[A-Z]);/gi, '');
-        if ( textOnly.length < 100 ) {
+        if ( textOnly.length < 130 ) {
             return "' " + textOnly + "'";
         }
-        const postPreview = textOnly.replace(/^(.{100}[^\s]*).*/, "$1").trim();
+        const postPreview = textOnly.replace(/^(.{130}[^\s]*).*/, "$1").trim();
         const lastChar = postPreview.charAt(postPreview.length - 1);
         if (lastChar === ","|"."|":"|";"|"!" ) {
             const newPreview = postPreview.slice(0, -1);
