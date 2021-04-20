@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     Email,
     // Facebook,
@@ -14,8 +14,9 @@ const buttonsWrapperStyles = {
 }
 
 const sharingButtons = ({ post }) => {
-    const url = `https://lawrence-coding-blog.netlify.app/post/${post.slug}`;
-    const shareText = "Check out this post!";
+    console.log(post);
+    const url = `https://lawrence-coding-blog.netlify.app/`;
+    const shareText = "Check out this blog!";
 
     return (
         <div style={buttonsWrapperStyles}>
